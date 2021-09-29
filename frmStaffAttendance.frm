@@ -176,7 +176,7 @@ Begin VB.Form frmStaffAttendance
    Begin VB.Label Label5 
       Alignment       =   2  'Center
       BackStyle       =   0  'Transparent
-      Caption         =   "Anand Mercantile College Of Science, Management and Computer Technology"
+      Caption         =   "Sri Devi Arts and Science College"
       BeginProperty Font 
          Name            =   "Arial"
          Size            =   15
@@ -301,10 +301,10 @@ Attribute VB_Exposed = False
 Dim i As Integer
 Dim Temp As Integer
 Dim TotalRecord As Integer
-Dim rs1 As New ADODB.Recordset
+Dim rs1 As New adodb.Recordset
 Dim sql As String
 Dim tmp As Integer
-Dim rs As ADODB.Recordset
+Dim rs As adodb.Recordset
 Dim rem1 As String
 Dim cnt As Integer
 Dim tt As Integer
@@ -385,7 +385,7 @@ End Sub
 Private Sub cmdsave_Click()
 tt = 0
 sv = 0
-Set rs = New ADODB.Recordset
+Set rs = New adodb.Recordset
 rs.Open " select count(*) from staffattendance", adodc, adOpenKeyset, adLockOptimistic
 'RS.Requery
 If rs.EOF = True Then
@@ -403,8 +403,8 @@ For i = 0 To Temp - 1
         chk = 0
     End If
     
-    rem1 = txtRemark(i).Text
-    Set rs1 = New ADODB.Recordset
+    rem1 = txtremark(i).Text
+    Set rs1 = New adodb.Recordset
     rs1.Open "select count(*) from STAFFATTENDANCE where ATTENDANCEDATE  = '" & Format(dt, "dd/mmm/yy") & "' and staffcode = " & Val(txtEmpCode(i).Text) & "", adodc, adOpenKeyset, adLockOptimistic
     If rs1.Fields(0) > 0 Then
         MsgBox "Already Exist . . . !!!", vbCritical, "Can Not Save"
@@ -542,27 +542,27 @@ End Sub
 Private Sub Form_Load()
 lblDate.Caption = Date
 Call connection
-Set rs = New ADODB.Recordset
+Set rs = New adodb.Recordset
 rs.Open "select count(*) from staffmaster order by empcode", adodc, adOpenKeyset, adLockOptimistic
 Temp = rs.Fields(0)
 If cnt = 0 Then
     For i = 1 To Temp - 1
         Load txtEmpCode(i)
         Load txtName(i)
-        Load txtRemark(i)
+        Load txtremark(i)
         Load chkPresent(i)
         txtEmpCode(i).tOp = txtEmpCode(i - 1).tOp + txtEmpCode(i - 1).Height + 10
         txtName(i).tOp = txtName(i - 1).tOp + txtName(i - 1).Height + 10
-        txtRemark(i).tOp = txtRemark(i - 1).tOp + txtRemark(i - 1).Height + 10
+        txtremark(i).tOp = txtremark(i - 1).tOp + txtremark(i - 1).Height + 10
         chkPresent(i).tOp = (chkPresent(i - 1).tOp + chkPresent(i - 1).Height + 30) + 15
         txtEmpCode(i).Visible = True
         txtName(i).Visible = True
-        txtRemark(i).Visible = True
+        txtremark(i).Visible = True
         chkPresent(i).Visible = True
     Next
 End If
     rs.Close
-    Set rs = New ADODB.Recordset
+    Set rs = New adodb.Recordset
 rs.Open " SELECT * FROM STAFFMASTER order by empcode", adodc, adOpenKeyset, adLockOptimistic
 Dim tt As Integer
 tt = 0
@@ -570,10 +570,10 @@ While rs.EOF = False
     txtEmpCode(tt).Text = rs.Fields("empcode")
     txtName(tt).Text = rs.Fields("lastname") & " " & rs.Fields("parentname") & " " & rs.Fields("firstname")
     If rs.Fields("remark") <> "" Then
-        txtRemark(tt).Text = rs.Fields("remark")
+        txtremark(tt).Text = rs.Fields("remark")
         
     Else
-        txtRemark(tt).Text = " "
+        txtremark(tt).Text = " "
     End If
     tt = tt + 1
     rs.MoveNext

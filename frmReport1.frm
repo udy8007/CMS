@@ -618,7 +618,7 @@ Begin VB.Form frmReport1
    Begin VB.Label Label7 
       Alignment       =   2  'Center
       BackStyle       =   0  'Transparent
-      Caption         =   "Anand Mercantile College Of Science, Management and Computer Technology"
+      Caption         =   "Sri Devi Arts and Science College"
       BeginProperty Font 
          Name            =   "Arial"
          Size            =   15
@@ -842,7 +842,7 @@ Private Sub cmdSearch_Click()
     
     CollegeADODC.Refresh
     MsgBox "Total Records :  . . . " & CollegeADODC.Recordset.RecordCount, vbInformation, "Student's Information"
-    Dim CN As New ADODB.connection
+    Dim CN As New adodb.connection
     CN.Open CollegeADODC.ConnectionString, "ty02", "ty02"
     CN.Execute "CREATE OR REPLACE VIEW STUDENTREPORT1 AS " & sql
 End Sub
@@ -854,7 +854,7 @@ Private Sub cmdShowAll_Click()
             CollegeADODC.RecordSource = sql
         CollegeADODC.Refresh
         MsgBox "Total Records :  . . . " & CollegeADODC.Recordset.RecordCount, vbInformation, "Student's Information"
-        Dim CN As New ADODB.connection
+        Dim CN As New adodb.connection
     CN.Open CollegeADODC.ConnectionString, "ty02", "ty02"
     CN.Execute "CREATE OR REPLACE VIEW STUDENTREPORT1 AS " & sql
     

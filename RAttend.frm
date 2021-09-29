@@ -26,7 +26,7 @@ Begin VB.MDIForm College
          BeginProperty Panel1 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   5
             AutoSize        =   2
-            TextSave        =   "1:31 AM"
+            TextSave        =   "17:40"
          EndProperty
          BeginProperty Panel2 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   1
@@ -35,13 +35,13 @@ Begin VB.MDIForm College
          EndProperty
          BeginProperty Panel3 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   6
-            TextSave        =   "22/03/05"
+            TextSave        =   "29-09-2021"
          EndProperty
          BeginProperty Panel4 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Alignment       =   2
             AutoSize        =   1
             Bevel           =   2
-            Object.Width           =   12753
+            Object.Width           =   12726
             Text            =   "Developed by AKASH KACHHIA"
             TextSave        =   "Developed by AKASH KACHHIA"
          EndProperty

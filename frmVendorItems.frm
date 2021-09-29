@@ -313,7 +313,7 @@ Begin VB.Form frmVendorItems
          Italic          =   0   'False
          Strikethrough   =   0   'False
       EndProperty
-      Format          =   24641537
+      Format          =   143851521
       CurrentDate     =   38427
    End
    Begin VB.Label lblFieldLabel 
@@ -349,7 +349,7 @@ Begin VB.Form frmVendorItems
    Begin VB.Label Label2 
       Alignment       =   2  'Center
       BackStyle       =   0  'Transparent
-      Caption         =   "Anand Mercantile College Of Science, Management and Computer Technology"
+      Caption         =   "Sri Devi Arts and Science College"
       BeginProperty Font 
          Name            =   "Arial"
          Size            =   15
@@ -563,15 +563,15 @@ Attribute VB_GlobalNameSpace = False
 Attribute VB_Creatable = False
 Attribute VB_PredeclaredId = True
 Attribute VB_Exposed = False
-Dim rs As ADODB.Recordset
-Dim rs1 As ADODB.Recordset
-Dim rs2 As ADODB.Recordset
+Dim rs As adodb.Recordset
+Dim rs1 As adodb.Recordset
+Dim rs2 As adodb.Recordset
 Dim sql As String
 Dim cnt As Integer
 
 Private Sub cmdAdd_Click()
 Call enable_true
-Set rs = New ADODB.Recordset
+Set rs = New adodb.Recordset
 rs.Open "select * from purchaseitems", adodc, adOpenKeyset, adLockOptimistic
 cnt = 0
 Do While Not rs.EOF
@@ -634,12 +634,12 @@ If rs1.EOF = False Then
     txtprice.Text = rs1("PRICE")
     txtqty.Text = rs1("QTY")
     txtremark = rs1("REMARK")
-    Set rs2 = New ADODB.Recordset
+    Set rs2 = New adodb.Recordset
     rs2.Open "select itemname from itemmaster where itemcode = " & ItemCodeList.Text & "", adodc, adOpenKeyset, adLockOptimistic
     lblItem.Caption = rs2.Fields(0)
     rs2.Close
 
-    Set rs2 = New ADODB.Recordset
+    Set rs2 = New adodb.Recordset
     rs2.Open "select vendorname from vendormaster where vendorcode = " & VendorCodeList.Text & "", adodc, adOpenKeyset, adLockOptimistic
     lblVendor.Caption = rs2.Fields(0)
     rs2.Close
@@ -657,12 +657,12 @@ If rs1.BOF = False Then
     txtprice.Text = rs1("PRICE")
     txtqty.Text = rs1("QTY")
     txtremark = rs1("REMARK")
-    Set rs2 = New ADODB.Recordset
+    Set rs2 = New adodb.Recordset
     rs2.Open "select itemname from itemmaster where itemcode = " & ItemCodeList.Text & "", adodc, adOpenKeyset, adLockOptimistic
     lblItem.Caption = rs2.Fields(0)
     rs2.Close
 
-    Set rs2 = New ADODB.Recordset
+    Set rs2 = New adodb.Recordset
     rs2.Open "select vendorname from vendormaster where vendorcode = " & VendorCodeList.Text & "", adodc, adOpenKeyset, adLockOptimistic
     lblVendor.Caption = rs2.Fields(0)
     rs2.Close
@@ -701,7 +701,7 @@ If txtremark.Text = "" Then
 End If
 
 If cnt = 0 Then
-    Set rs = New ADODB.Recordset
+    Set rs = New adodb.Recordset
     rs.Open "select count(purchaseid) from PURCHASEITEMS where purchaseid = '" & txtPURCHASEID.Text & "'", adodc, adOpenKeyset, adLockOptimistic
     If rs.Fields(0) = 0 Then
         sql = "insert into PURCHASEITEMS values (" & CDec(txtPURCHASEID.Text) & ",'" & UCase(Format(PurchaseDate.Value, "dd-mmm-yy")) & "'," & CDec(ItemCodeList.Text) & "," & CDec(VendorCodeList.Text) & "," & CDec(txtprice.Text) & "," & CDec(txtqty.Text) & ",'" & txtremark.Text & "')"
@@ -733,12 +733,12 @@ VendorCodeList.Text = rs1("VENDORCODE")
 txtprice.Text = rs1("PRICE")
 txtqty.Text = rs1("QTY")
 txtremark = rs1("REMARK")
-Set rs2 = New ADODB.Recordset
+Set rs2 = New adodb.Recordset
 rs2.Open "select itemname from itemmaster where itemcode = " & ItemCodeList.Text & "", adodc, adOpenKeyset, adLockOptimistic
 lblItem.Caption = rs2.Fields(0)
 rs2.Close
 
-Set rs2 = New ADODB.Recordset
+Set rs2 = New adodb.Recordset
 rs2.Open "select vendorname from vendormaster where vendorcode = " & VendorCodeList.Text & "", adodc, adOpenKeyset, adLockOptimistic
 lblVendor.Caption = rs2.Fields(0)
 rs2.Close
@@ -751,13 +751,13 @@ Private Sub Form_Load()
 Call connection
 Call enable_false
 cnt = 0
-Set rs1 = New ADODB.Recordset
+Set rs1 = New adodb.Recordset
 rs1.Open "select * from PURCHASEITEMS order by PURCHASEID", adodc, adOpenKeyset, adLockOptimistic
 If rs1.EOF = False Then
     rs1.MoveFirst
 End If
 
-Set rs2 = New ADODB.Recordset
+Set rs2 = New adodb.Recordset
 rs2.Open " select itemcode from itemmaster order by itemcode", adodc, adOpenKeyset, adLockOptimistic
 While rs2.EOF = False
     ItemCodeList.AddItem rs2("Itemcode")
@@ -765,7 +765,7 @@ While rs2.EOF = False
 Wend
 rs2.Close
 
-Set rs2 = New ADODB.Recordset
+Set rs2 = New adodb.Recordset
 rs2.Open " select vendorcode from vendormaster order by vendorcode", adodc, adOpenKeyset, adLockOptimistic
 While rs2.EOF = False
     VendorCodeList.AddItem rs2("vendorcode")
@@ -773,7 +773,7 @@ While rs2.EOF = False
 Wend
 rs2.Close
 
-Set rs = New ADODB.Recordset
+Set rs = New adodb.Recordset
 rs.Open "select * from PURCHASEITEMS order by PURCHASEID", adodc, adOpenKeyset, adLockOptimistic
 
 If rs.EOF = False Then
@@ -790,7 +790,7 @@ End If
 End Sub
 
 Private Sub ItemCodeList_LostFocus()
-Set rs2 = New ADODB.Recordset
+Set rs2 = New adodb.Recordset
     rs2.Open "select itemname from itemmaster where itemcode = " & ItemCodeList.Text & "", adodc, adOpenKeyset, adLockOptimistic
     lblItem.Caption = rs2.Fields(0)
     rs2.Close
@@ -805,7 +805,7 @@ If KeyAscii = 8 Or KeyAscii = 46 And (KeyAscii >= 48 And KeyAscii <= 57) Then El
 End Sub
 
 Private Sub VendorCodeList_LostFocus()
-Set rs2 = New ADODB.Recordset
+Set rs2 = New adodb.Recordset
     rs2.Open "select vendorname from vendormaster where vendorcode = " & VendorCodeList.Text & "", adodc, adOpenKeyset, adLockOptimistic
     lblVendor.Caption = rs2.Fields(0)
     rs2.Close

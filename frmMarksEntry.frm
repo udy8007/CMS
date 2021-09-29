@@ -187,7 +187,7 @@ Begin VB.Form frmMarksEntry
          Italic          =   0   'False
          Strikethrough   =   0   'False
       EndProperty
-      Format          =   142802945
+      Format          =   143851521
       CurrentDate     =   37716
    End
    Begin MSDataGridLib.DataGrid MarksGrid 
@@ -601,7 +601,7 @@ Begin VB.Form frmMarksEntry
    Begin VB.Label Label7 
       Alignment       =   2  'Center
       BackStyle       =   0  'Transparent
-      Caption         =   "Anand Mercantile College Of Science, Management and Computer Technology"
+      Caption         =   "Sri Devi Arts and Science College"
       BeginProperty Font 
          Name            =   "Arial"
          Size            =   15

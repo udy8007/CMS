@@ -143,7 +143,7 @@ Begin VB.Form frmReport3
          Strikethrough   =   0   'False
       EndProperty
       CustomFormat    =   "dd-MMM-yyyy"
-      Format          =   24641539
+      Format          =   49545219
       CurrentDate     =   37680
    End
    Begin VB.ComboBox cboYear 
@@ -532,7 +532,7 @@ Begin VB.Form frmReport3
          Strikethrough   =   0   'False
       EndProperty
       CustomFormat    =   "dd-MMM-yyyy"
-      Format          =   24641539
+      Format          =   49545219
       CurrentDate     =   37680
    End
    Begin VB.Shape Shape3 
@@ -555,7 +555,7 @@ Begin VB.Form frmReport3
    Begin VB.Label Label8 
       Alignment       =   2  'Center
       BackStyle       =   0  'Transparent
-      Caption         =   "Anand Mercantile College Of Science, Management and Computer Technology"
+      Caption         =   "Sri Devi Arts and Science College"
       BeginProperty Font 
          Name            =   "Arial"
          Size            =   15
@@ -769,7 +769,7 @@ Private Sub cmdShowAll_Click()
     CollegeADODC.Refresh
     MsgBox "Total Records :  . . . " & CollegeADODC.Recordset.RecordCount, vbInformation, "Student's Information"
 
-    Dim CN As New ADODB.connection
+    Dim CN As New adodb.connection
     CN.Open CollegeADODC.ConnectionString, "ty02", "ty02"
     CN.Execute "CREATE OR REPLACE VIEW STUDENTREPORT3 AS " & sql
     
@@ -817,7 +817,7 @@ On Error GoTo DataError
     CollegeADODC.Refresh
     MsgBox "Total Records :  . . . " & CollegeADODC.Recordset.RecordCount, vbInformation, "Attendance Information"
     
-    Dim CN As New ADODB.connection
+    Dim CN As New adodb.connection
     CN.Open CollegeADODC.ConnectionString, "ty02", "ty02"
     
     CN.Execute "CREATE OR REPLACE VIEW STUDENTREPORT3 AS " & sql

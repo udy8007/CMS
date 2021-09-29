@@ -216,7 +216,7 @@ Begin VB.Form frmAttendance
          Strikethrough   =   0   'False
       EndProperty
       CheckBox        =   -1  'True
-      Format          =   24903681
+      Format          =   143851521
       CurrentDate     =   37588
    End
    Begin MSAdodcLib.Adodc Temp 
@@ -307,7 +307,7 @@ Begin VB.Form frmAttendance
    Begin VB.Label Label1 
       Alignment       =   2  'Center
       BackStyle       =   0  'Transparent
-      Caption         =   "Anand Mercantile College Of Science, Management and Computer Technology"
+      Caption         =   "Sri Devi Arts and Science College"
       BeginProperty Font 
          Name            =   "Arial"
          Size            =   15
@@ -435,13 +435,13 @@ Attribute VB_PredeclaredId = True
 Attribute VB_Exposed = False
 'Option Explicit
 Dim sql As String
-Dim rs As ADODB.Recordset
+Dim rs As adodb.Recordset
 Dim mI(200) As Long
 Dim md As Integer
 Dim mrollno As Integer
 
 Private Sub cmbsubcode_LostFocus()
-Set rs = New ADODB.Recordset
+Set rs = New adodb.Recordset
 rs.Open " select * from studentmaster where courcecode = '" & CourceCode.Text & "' and year = " & cmbyear.Text & " order by rollno ", adodc, adOpenKeyset, adLockOptimistic
 If rs.EOF = True Then
     MsgBox "No Student Found . . . !!!", vbInformation, "Student Record"
@@ -462,7 +462,7 @@ Private Sub Command1_Click()
 End Sub
 
 Private Sub CourceCode_lostFocus()
-Set rs = New ADODB.Recordset
+Set rs = New adodb.Recordset
 rs.Open "select subjectcode from subjectmaster where courcecode = '" & CourceCode.Text & "' order by subjectcode", adodc, adOpenKeyset, adLockOptimistic
 cmbsubcode.Clear
 While rs.EOF = False
@@ -475,8 +475,8 @@ End Sub
 
 Private Sub Form_Load()
 Call connection
-DTPicker1.Value = Date
-Set rs = New ADODB.Recordset
+DTPicker1.Value = Now
+Set rs = New adodb.Recordset
 rs.Open "select courcecode from courcemaster", adodc, adOpenKeyset, adLockOptimistic
 CourceCode.Clear
 While rs.EOF = False
@@ -484,7 +484,7 @@ While rs.EOF = False
     rs.MoveNext
 Wend
 rs.Close
-Set rs = New ADODB.Recordset
+Set rs = New adodb.Recordset
 rs.Open "select empcode from staffmaster", adodc, adOpenKeyset, adLockOptimistic
 cmbtcode.Clear
 While rs.EOF = False
@@ -525,11 +525,11 @@ For i = 0 To tt - 1
         End If
     Next
     temp1 = Trim(temp1)
-    Set rs = New ADODB.Recordset
+    Set rs = New adodb.Recordset
     rs.Open "select COUNT(ATTENDANCEID) from ATTENDANCE", adodc, adOpenKeyset, adLockOptimistic
     cnt = rs.Fields(0)
     rs.Close
-    Set rs = New ADODB.Recordset
+    Set rs = New adodb.Recordset
     rs.Open "select max(ATTENDANCEID) from ATTENDANCE", adodc, adOpenKeyset, adLockOptimistic
     
     
@@ -545,7 +545,7 @@ For i = 0 To tt - 1
     Else
         pre = o
     End If
-    Set rs = New ADODB.Recordset
+    Set rs = New adodb.Recordset
     rs.Open "select count(*) from ATTENDANCE where CourceCode = '" & CourceCode.Text & "' and year = " & cmbyear.Text & " and ROLLNO = " & temp1 & " and teachercode = " & cmbtcode.Text & " and subjectCode = '" & cmbsubcode.Text & "' and attendancedate = '" & UCase(Format(DTPicker1.Value, "dd-mmm-yy")) & "'", adodc, adOpenKeyset, adLockOptimistic
     ct = rs.Fields(0)
     If ct <> 0 Then
