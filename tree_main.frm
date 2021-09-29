@@ -58,7 +58,7 @@ Begin VB.Form tree_main
             AutoSize        =   1
             Object.Width           =   15293
             Picture         =   "tree_main.frx":0000
-            TextSave        =   "14:26"
+            TextSave        =   "17:09"
          EndProperty
          BeginProperty Panel2 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   1
@@ -67,7 +67,7 @@ Begin VB.Form tree_main
          EndProperty
          BeginProperty Panel3 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   6
-            TextSave        =   "28-09-2021"
+            TextSave        =   "29-09-2021"
          EndProperty
       EndProperty
       BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
@@ -169,8 +169,8 @@ If TreeView1.SelectedItem.Key = "r413" Then frmReport3.Show
 If TreeView1.SelectedItem.Key = "r42" Then staffreport.Show
 If TreeView1.SelectedItem.Key = "r43" Then VendorItems.Show
 
-If TreeView1.SelectedItem.Key = "r51" Then Temp = Shell("C:\Windows\Calc.Exe", 1)
-If TreeView1.SelectedItem.Key = "r52" Then Temp = Shell("C:\Windows\notepad.Exe", 1)
+If TreeView1.SelectedItem.Key = "r51" Then Temp = Shell("C:\Windows\system32\Calc.Exe", 1)
+If TreeView1.SelectedItem.Key = "r52" Then Temp = Shell("C:\Windows\system32\notepad.exe", 1)
 
 If TreeView1.SelectedItem.Key = "r61" Then adduserfrm.Show
 If TreeView1.SelectedItem.Key = "r62" Then deluserfrm.Show

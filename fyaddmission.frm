@@ -289,7 +289,7 @@ Begin VB.Form fyaddmission
          Strikethrough   =   0   'False
       EndProperty
       CalendarBackColor=   12632319
-      Format          =   24641537
+      Format          =   36962305
       CurrentDate     =   38427
    End
    Begin MSComCtl2.DTPicker dtbirth 
@@ -310,7 +310,7 @@ Begin VB.Form fyaddmission
          Italic          =   0   'False
          Strikethrough   =   0   'False
       EndProperty
-      Format          =   24641537
+      Format          =   36962305
       CurrentDate     =   38425
    End
    Begin VB.Label Label11 
@@ -581,7 +581,7 @@ Begin VB.Form fyaddmission
    Begin VB.Label Label17 
       Alignment       =   2  'Center
       BackStyle       =   0  'Transparent
-      Caption         =   "Anand Mercantile College Of Science , Management and Computer Technology"
+      Caption         =   "Sri Devi Arts and Science College"
       BeginProperty Font 
          Name            =   "Arial"
          Size            =   15
@@ -737,8 +737,8 @@ Attribute VB_Exposed = False
 '    If KeyAscii = 8 Or KeyAscii = 32 Or (KeyAscii >= 97 And KeyAscii <= 123) Or (KeyAscii >= 65 And KeyAscii <= 91) Then Else KeyAscii = 0
 'End Sub
 '
-Dim rs As ADODB.Recordset
-Dim rs1 As ADODB.Recordset
+Dim rs As adodb.Recordset
+Dim rs1 As adodb.Recordset
 Dim sql As String
 Dim cnt As Integer
 
@@ -791,10 +791,10 @@ End Sub
 
 Private Sub cmdnew_Click()
 Call enable_true
-Set rs = New ADODB.Recordset
+Set rs = New adodb.Recordset
 rs.Open "select * from studentmaster", adodc, adOpenKeyset, adLockOptimistic
 
-    dtjoin.Value = Date
+    dtjoin.Value = Now
     
     txtRollNo.Text = ""
     TXTLNAME.Text = ""
@@ -804,7 +804,7 @@ rs.Open "select * from studentmaster", adodc, adOpenKeyset, adLockOptimistic
     TXTLPHONE.Text = ""
     TXTPADD.Text = ""
     TXTPPHONE.Text = ""
-    dtbirth.Value = Date
+    dtbirth.Value = Now
     TXTOCCU.Text = ""
     TXTANNINC.Text = ""
     txtremark.Text = ""
@@ -928,10 +928,10 @@ If txtremark.Text = "" Then
     cnt = 1
 End If
 If cnt = 0 Then
-    Set rs = New ADODB.Recordset
-    rs.Open "select count(*) from studentmaster where courcecode = '" & cmbcourse.Text & "' and rollno = " & CDec(txtRollNo.Text) & " and year = " & CDec(cmby.Text) & "", adodc, adOpenKeyset, adLockOptimistic
+    Set rs = New adodb.Recordset
+    rs.Open "select count(*) from studentmaster where courcecode = '" & cmbcourse.Text & "' and rollno = " & CDec(txtRollNo.Text) & " and year = '" & cmby.Text & "'", adodc, adOpenKeyset, adLockOptimistic
     If rs.Fields(0) = 0 Then
-        sql = "insert into studentmaster values ('" & cmbcourse & "','" & UCase(Format(dtjoin.Value, "dd-mmm-yy")) & "'," & CDec(cmby.Text) & "," & CDec(txtRollNo.Text) & ",'" & TXTLNAME.Text & "','" & TXTFNAME.Text & "','" & TXTSNAME.Text & "','" & TXTLADD.Text & "'," & CDec(TXTLPHONE.Text) & ",'" & TXTPADD.Text & "'," & CDec(TXTPPHONE.Text) & ",'" & cmbgender.Text & "','" & cmbstream.Text & "','" & UCase(Format(dtbirth.Value, "dd-mmm-yy")) & "','" & cmbcast.Text & "','" & TXTOCCU.Text & "', " & CDec(TXTANNINC.Text) & ",'" & txtremark & "')"
+        sql = "insert into studentmaster values ('" & cmbcourse & "','" & dtjoin.Value & "','" & cmby.Text & "'," & CDec(txtRollNo.Text) & ",'" & TXTLNAME.Text & "','" & TXTFNAME.Text & "','" & TXTSNAME.Text & "','" & TXTLADD.Text & "'," & CDec(TXTLPHONE.Text) & ",'" & TXTPADD.Text & "'," & CDec(TXTPPHONE.Text) & ",'" & cmbgender.Text & "','" & cmbstream.Text & "','" & dtbirth.Value & "','" & cmbcast.Text & "','" & TXTOCCU.Text & "', " & CDec(TXTANNINC.Text) & ",'" & txtremark & "')"
         'MsgBox sql
         
         adodc.Execute sql
@@ -939,11 +939,12 @@ If cnt = 0 Then
         
         
     Else
+    Dim Yn As String
         MsgBox "Record Already Exist . . . !!!", vbInformation, "Save"
         Yn = MsgBox("Do You Want To Update Record . . . ???", vbYesNo, "Save")
         If Yn = 6 Then
-            sql = "Update STUDENTMASTER set JOINDATE = '" & UCase(Format(dtjoin.Value, "dd-mmm-yy")) & "', ROLLNO = " & CDec(txtRollNo.Text) & ", LASTNAME = '" & TXTLNAME.Text & "',FIRSTNAME = '" & TXTFNAME.Text & "',PARENTNAME = '" & TXTSNAME.Text & "', ADDRESS = '" & TXTLADD.Text & "',PHONE = " & CDec(TXTLPHONE.Text) & ",PADDRESS = '" & TXTPADD.Text & "',PPHONE = " & CDec(TXTPPHONE.Text) & ",GENDER = '" & cmbgender.Text & "',STREAM = '" & cmbstream.Text & "', BIRTHDATE = '" & UCase(Format(dtbirth.Value, "dd-mmm-yy")) & "', CAST = '" & cmbcast.Text & "',OCCUPATION = '" & TXTOCCU.Text & "', ANNUALINCOME = " & CDec(TXTANNINC.Text) & ",REMARK = '" & txtremark & "' where COURCECODE = '" & cmbcourse.Text & "' and YEAR = " & CDec(cmby.Text) & " and rollno = " & CDec(txtRollNo.Text) & ""
-            MsgBox sql
+            sql = "Update STUDENTMASTER set JOINDATE = '" & dtjoin.Value & "', ROLLNO = " & CDec(txtRollNo.Text) & ", LASTNAME = '" & TXTLNAME.Text & "',FIRSTNAME = '" & TXTFNAME.Text & "',PARENTNAME = '" & TXTSNAME.Text & "', ADDRESS = '" & TXTLADD.Text & "',PHONE = " & CDec(TXTLPHONE.Text) & ",PADDRESS = '" & TXTPADD.Text & "',PPHONE = " & CDec(TXTPPHONE.Text) & ",GENDER = '" & cmbgender.Text & "',STREAM = '" & cmbstream.Text & "', BIRTHDATE = '" & dtbirth.Value & "', CAST = '" & cmbcast.Text & "',OCCUPATION = '" & TXTOCCU.Text & "', ANNUALINCOME = " & CDec(TXTANNINC.Text) & ",REMARK = '" & txtremark & "' where COURCECODE = '" & cmbcourse.Text & "' and YEAR = '" & cmby.Text & "' and rollno = " & CDec(txtRollNo.Text) & ""
+           ' MsgBox sql
             adodc.Execute sql
             MsgBox "Record Updated", vbInformation, "Update"
         End If
@@ -979,7 +980,7 @@ Private Sub Form_Load()
 Call connection
 Call enable_false
 cnt = 0
-Set rs = New ADODB.Recordset
+Set rs = New adodb.Recordset
 rs.Open "select courcecode from courcemaster", adodc, adOpenKeyset, adLockOptimistic
 If rs.EOF = False Then
     While rs.EOF = False
@@ -989,13 +990,13 @@ If rs.EOF = False Then
 End If
 rs.Close
 
-Set rs1 = New ADODB.Recordset
+Set rs1 = New adodb.Recordset
 rs1.Open "select * from studentmaster order by courcecode,year ", adodc, adOpenKeyset, adLockOptimistic
 If rs1.EOF = False Then
     rs1.MoveFirst
 End If
 
-Set rs = New ADODB.Recordset
+Set rs = New adodb.Recordset
 rs.Open "select * from studentmaster order by courcecode", adodc, adOpenKeyset, adLockOptimistic
 rs.MoveFirst
 If rs.EOF = False Then
